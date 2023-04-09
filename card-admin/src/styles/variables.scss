@@ -1,0 +1,20 @@
+// 全局Sass变量
+$body-color:#525f7f;
+$body-font-size:1rem;
+$body-font-weight:400;
+$body-bg:#fff;
+$body-line-height:1.625;
+$font-sans-self:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+$body-font-family:$font-sans-self;
+$sidebar-bg:#fbfaff;
+$layout-shadow: 0 0.25rem 0.75rem rgba(18,38,63,.08);
+$bg-light: #e9e9ef;
+$bg-light-rgb: 233,233,239;
+
+
+
+
+:root {
+    --el-color-primary:#5156be;
+    --el-color-primary-text:#5156be;
+  }

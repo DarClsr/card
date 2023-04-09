@@ -1,0 +1,10 @@
+// 全局过渡样式
+
+
+.shadow-transtion{
+    transition: box-shadow .5s linear;
+}
+
+.shadow-transtion:hover{
+    box-shadow: 0 0 20px rgba(0,0,0,.2);
+}
