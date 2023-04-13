@@ -19,12 +19,11 @@ router.beforeEach(async (to:RouteLocationNormalized,from:RouteLocationNormalized
                 }
          }
        }else {
-        const info=await store.dispatch("getInfo");
-        console.log({
-            info
-        })
+        await store.dispatch("loadMenu");
         return true;
        }
+    }else{
+        return true;
     }
 })
 

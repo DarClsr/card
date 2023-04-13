@@ -39,3 +39,13 @@ export const login=(params:ILoginParams)=>{
 export const getInfo=()=>{
     return http.get("auth/info")
 }
+
+
+/**
+ * 获取用户菜单
+ * @param  account password
+ * @returns  
+ */
+export const getMenu=()=>{
+    return http.get("auth/menu")
+}

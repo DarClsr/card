@@ -7,7 +7,7 @@
     active-text-color="#16192c"
     :collapse="isCollapse"
   >
-    <el-menu-item index="/" class="home menu-item">
+    <!-- <el-menu-item index="/" class="home menu-item">
       <el-icon size="36"><house /></el-icon>
       <div class="menu-text">
         <span>首页</span>
@@ -21,7 +21,7 @@
       <el-menu-item-group>
         <el-menu-item index="/card_list">充值卡列表</el-menu-item>
       </el-menu-item-group>
-    </el-sub-menu>
+    </el-sub-menu> -->
     <!-- <el-sub-menu index="/shop" class="sub-menu-item">
       <template #title>
         <el-icon size="36"><postcard /></el-icon>
@@ -61,24 +61,34 @@
       </el-menu-item-group>
     </el-sub-menu> -->
 
-    <el-sub-menu index="/menu" class="sub-menu-item">
+    <!-- <el-sub-menu index="/menu" class="sub-menu-item">
       <template #title>
         <el-icon size="36"><postcard /></el-icon>
         <span>菜单</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item index="/menu_list">菜单列表</el-menu-item>
+        <el-menu-item index="/menu">菜单列表</el-menu-item>
       </el-menu-item-group>
-    </el-sub-menu>
+    </el-sub-menu> -->
+
+    <RouteMenus  :menus="menus"/>
+
+    
   </el-menu>
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
+import { defineProps,computed } from "vue";
 import { House, Postcard,VideoCameraFilled } from "@element-plus/icons-vue";
+import RouteMenus from "./routeMenus.vue"
+import store from "@/store";
+
 defineProps({
   isCollapse: Boolean,
 });
+const menus=computed(()=>{
+  return store.state.menus;
+})
 </script>
 
 <style lang="scss">

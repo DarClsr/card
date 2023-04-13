@@ -10,7 +10,7 @@ export interface ILoginInfo{
 }
 
 export interface IUserInfo{
-    account:string,
+    email:string,
     _id:string,
     nick_name:string,
     avatar:string,

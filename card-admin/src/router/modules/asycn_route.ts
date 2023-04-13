@@ -1,0 +1,65 @@
+import { RouterView } from 'vue-router';
+
+
+export const asyncRoutes=[
+    {
+        path:"/menu",
+        name:"菜单",
+        meta:{
+            title:"菜单",
+            requireAuth:true,
+            type:"group",
+            icon:"menu"
+        },
+        component:RouterView,
+        children:[
+            {
+                path:"/menu",
+                name:"菜单管理",
+                meta:{
+                    title:"菜单管理",
+                    type:"menu"
+                },
+                component:()=>import("@/views/menu/index.vue"),
+            }
+        ]
+    },
+    {
+        path:"/user",
+        name:"用户",
+        meta:{
+            title:"用户",
+            requireAuth:true,
+        },
+        component:RouterView,
+        children:[
+            {
+                path:"/user",
+                name:"用户管理",
+                meta:{
+                    title:"用户管理",
+                },
+                component:()=>import("@/views/user/index.vue"),
+            }
+        ]
+    },
+    {
+        path:"/role",
+        name:"角色",
+        meta:{
+            title:"角色",
+            requireAuth:true,
+        },
+        component:RouterView,
+        children:[
+            {
+                path:"/role",
+                name:"角色管理",
+                meta:{
+                    title:"角色管理",
+                },
+                component:()=>import("@/views/role/index.vue"),
+            }
+        ]
+    }
+]

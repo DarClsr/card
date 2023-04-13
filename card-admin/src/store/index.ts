@@ -2,11 +2,12 @@ import { IUserInfo } from '@/api/types/common';
 import { createStore } from 'vuex'
 import { setItem,getItem } from "@/utils/storage"
 import {USER,TOKEN} from "@/utils/constans"
-import { getInfo } from '@/api/common';
+import { getInfo,getMenu } from '@/api/common';
 
 const state={
   user:getItem<IUserInfo>(USER),
-  token:getItem<IUserInfo>(TOKEN)
+  token:getItem<IUserInfo>(TOKEN),
+  menus:[]
 }
 
 export type  State = typeof state;
@@ -22,13 +23,21 @@ const store = createStore<State>({
     setToken (state,token) {
       state.token=token;
       setItem(TOKEN,state.token);
+    },
+    setMenu(state,menus) {
+      state.menus=menus
     }
   },
   actions:{
     async getInfo({commit}){
-      const data=await getInfo();
+      const {data}=await getInfo();
       commit('setUser',data)
       return data;
+    },
+    async loadMenu({commit}){
+      const {data}=await getMenu()
+      commit('setMenu',data)
+
     }
   }
 })

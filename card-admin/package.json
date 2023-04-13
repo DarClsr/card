@@ -18,10 +18,12 @@
     "gl-transition": "^1.13.0",
     "gl-transitions": "^1.43.0",
     "nprogress": "^0.2.0",
+    "performant-array-to-tree": "^1.11.0",
     "phaser": "3.55.2",
     "vue": "^3.2.25",
     "vue-router": "4",
     "vue3-apexcharts": "^1.4.1",
+    "vuetify": "^3.1.13",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

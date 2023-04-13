@@ -1,10 +1,15 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { MenuModel } from 'db/models';
 import { UserModel } from 'db/models/user';
 
 @Injectable()
 export class AuthService {
-  constructor(public userModel: UserModel, private jwtService: JwtService) {}
+  constructor(
+    public userModel: UserModel, 
+    public menuModel: MenuModel, 
+    private jwtService: JwtService
+    ) {}
 
   async register(body) {
     console.log(body);
@@ -14,6 +19,7 @@ export class AuthService {
     const user = await this.userModel.findOne({
       email: body.email,
     });
+
     if (!user) {
       throw new BadRequestException('邮箱尚未注册');
     }
@@ -30,5 +36,11 @@ export class AuthService {
         expiresIn: '7d',
       }),
     };
+  }
+
+  async getMenus(user){
+    const data = (await this.menuModel.find().lean());
+    return data
+
   }
 }

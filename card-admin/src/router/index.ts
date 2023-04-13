@@ -7,43 +7,26 @@ import gameRoute from "./modules/game"
 import "nprogress/nprogress.css"
 import Layout from "@/layout/layout.vue"
 import { RouterView } from 'vue-router';
+import {asyncRoutes} from "./modules/asycn_route"
 
 
-const asyncRoutes=[
-    {
-        path:"/menu",
-        name:"菜单",
-        meta:{
-            title:"店铺",
-            requireAuth:true,
-        },
-        component:RouterView,
-        children:[
-            {
-                path:"/menu_list",
-                name:"菜单管理",
-                meta:{
-                    title:"菜单列表"
-                },
-                component:()=>import("@/views/menu/index.vue"),
-            }
-        ]
-    }
-]
+
 
 const routes:RouteRecordRaw[]=[
    {
        path:"/",
        component:Layout,
        meta:{
-           requireAuth:true
+           requireAuth:true,
+           type:"group",
+           icon:"home"
        },
        children:[
         {
             path:"/",
             name:"home",
             meta:{
-                title:"首页"
+                title:"首页",
             },
             component:()=>import("../views/home/index.vue")
         },

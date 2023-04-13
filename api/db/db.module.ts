@@ -47,7 +47,6 @@ for (let model in models) {
   }
 
 
-  console.log(providers)
 
 
 @Global()

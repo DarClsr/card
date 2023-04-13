@@ -2,20 +2,23 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { classToPlain } from 'class-transformer';
 import { UserDocument, UserModel } from 'db/models';
+import { CrudService } from 'src/crud';
 
 @Injectable()
-export class UserService {
+export class UserService extends CrudService {
     constructor(
+        public model:UserModel,
         private jwtService: JwtService,
-        private model:UserModel
     ){
-
+    super(model)
     }
 
     async validateUserByJwt(body){
       const user = await this.model.findById(body._id)
       return user
     }
+
+    
 
     verifyToken(token: string): number {
       try {
@@ -46,7 +49,5 @@ export class UserService {
         );
       }
 
-    findById(user){
-        return {}
-    }
+   
 }

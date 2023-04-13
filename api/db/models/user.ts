@@ -1,5 +1,6 @@
-import { DocumentType, Prop, ReturnModelType, modelOptions } from '@typegoose/typegoose';
+import { DocumentType, Prop, ReturnModelType, modelOptions, Ref } from '@typegoose/typegoose';
 import { hashSync } from 'bcryptjs';
+import { Role } from './role';
 
 
 @modelOptions({
@@ -20,6 +21,15 @@ export class User {
     set: (v) => hashSync(v, 10),
   })
   password: string;
+
+  @Prop()
+  username: string;
+
+  @Prop({ref:()=>Role})
+  role: Ref<Role>;
+
+  @Prop()
+  isSuper?: Boolean;
 
 }
 export type UserDocument = DocumentType<User>;
