@@ -6,10 +6,10 @@ import { UserModel } from 'db/models/user';
 @Injectable()
 export class AuthService {
   constructor(
-    public userModel: UserModel, 
-    public menuModel: MenuModel, 
-    private jwtService: JwtService
-    ) {}
+    public userModel: UserModel,
+    public menuModel: MenuModel,
+    private jwtService: JwtService,
+  ) {}
 
   async register(body) {
     console.log(body);
@@ -27,20 +27,30 @@ export class AuthService {
   }
 
   async login(body) {
-    const user=await this.validateUser(body)
+    const user = await this.validateUser(body);
     return {
       user: user,
-      token: this.jwtService.sign({
-        _id:user._id
-      }, {
-        expiresIn: '7d',
-      }),
+      token: this.jwtService.sign(
+        {
+          _id: user._id,
+        },
+        {
+          expiresIn: '7d',
+        },
+      ),
     };
   }
 
-  async getMenus(user){
-    const data = (await this.menuModel.find().lean());
-    return data
-
+  async getMenus(user) {
+    const user_info = await user.populate({
+      path: 'role',
+      populate: [
+        {
+          path: 'menus',
+        },
+      ],
+    });
+    const data = user_info.toJSON()?.role?.menus ?? [];
+    return data;
   }
 }
