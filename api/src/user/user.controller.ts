@@ -5,13 +5,13 @@ import { Crud } from 'src/crud/crud.decorator';
 import { UserService } from './user.service';
 
 @Controller('user')
-@UseGuards(JwtAuthGuard)
 @Crud({ name: 'user' })
+@UseGuards(JwtAuthGuard,RolesGuard)
 export class UserController {
   constructor(private service: UserService) {}
-  @Get()
-@UseGuards(RolesGuard)
-  async find(){
-    return this.service.model.find()
-  }
+//   @Get()
+// @UseGuards(RolesGuard)
+//   async find(){
+//     return this.service.model.find()
+//   }
 }

@@ -18,6 +18,7 @@ export const Crud = (options: CrudOptions = {}): ClassDecorator => {
     const proto = target.prototype
     // SetMetadata('crudOptions', options)(proto)
     // Reflect.defineMetadata()
+    console.log("@ crud")
 
     for (let prop in Object.getOwnPropertyDescriptors(crudProto)) {
       if (prop === 'constructor') continue;
@@ -27,25 +28,33 @@ export const Crud = (options: CrudOptions = {}): ClassDecorator => {
 
       const method = Object.getOwnPropertyDescriptor(proto, prop)
       Reflect.defineMetadata('Permission', `${name}.${prop}`, proto, prop);
+      Reflect.defineMetadata('permissions', `${name}.${prop}`, proto, prop);
       // Reflect.defineMetadata('Permission', `${name}.${prop}`, method.);
-
 
       Reflect.getMetadataKeys(crud, prop).forEach(key => {
         const meta = Reflect.getMetadata(key, crud, prop)
         Reflect.defineMetadata(key, meta, target, prop);
+
       })
 
       Reflect.getMetadataKeys(crudProto, prop).forEach(key => {
         const meta = Reflect.getMetadata(key, crudProto, prop)
+
         Reflect.defineMetadata(key, meta, proto, prop);
+
+        Reflect.defineMetadata('permissions', `${name}.${prop}`, proto, prop);
+
       })
 
       Reflect.getMetadataKeys(crudMethod.value).forEach(key => {
         const meta = Reflect.getMetadata(key, crudMethod.value)
         Reflect.defineMetadata(key, meta, proto, prop);
+        Reflect.defineMetadata('permissions', `${name}.${prop}`, proto, prop);
         // Reflect.defineMetadata(key, meta, method.value);
       })
     }
+
+    console.log(proto,"crudProto")
   }
 }
 
