@@ -26,7 +26,11 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       // req.headers['authorization'] = tokens.accessToken
       // req.headers['refreshtoken'] = tokens.refreshToken
       // // 在响应头中加入新的token，客户端判断响应头有无 Authorization 字段，有则重置
-      // res.header('Authorization', tokens.accessToken)
+      res.header('Authorization', accessToken)
+
+      req.user=user;
+
+      console.log(res.user,"req")
       // res.header('RefreshToken', tokens.refreshToken)
       // // 将当前请求交给下一级
       return this.activate(context)

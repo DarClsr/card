@@ -11,14 +11,13 @@ export class RolesGuard implements CanActivate {
   ): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
     const user = request.user;
-    console.log(request)
+    console.log(request.user,"role check")
     // 当前请求所需权限
     if(user?.isSuper){
       Logger.warn('超级管理员不需要检验权限')
       return true;
     }
 
-    console.log(context.getHandler())
     const currentPerm = this.reflector.get<string>('permissions', context.getHandler());
     Logger.log(currentPerm, '当前所需权限:')
     // 标识不需要权限
