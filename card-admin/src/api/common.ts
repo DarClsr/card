@@ -49,3 +49,12 @@ export const getInfo=()=>{
 export const getMenu=()=>{
     return http.get("auth/menu")
 }
+
+/**
+ * 获取用户操作权限
+ * @param  account password
+ * @returns  
+ */
+export const getPermission=()=>{
+    return http.get("auth/permission")
+}

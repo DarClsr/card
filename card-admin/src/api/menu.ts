@@ -16,3 +16,4 @@ export const loadMenus = async () => {
     dataField: null,
   });
 };
+

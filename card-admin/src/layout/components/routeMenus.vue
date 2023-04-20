@@ -2,7 +2,7 @@
   <!-- 如果存在子路由 -->
   <template v-for="(item,j) in (menus as any)">
     <template v-if="item.children && item.children.length">
-      <el-sub-menu :index="j" :title="item.name || '未命名'" class="menu-item">
+      <el-sub-menu :index="String(j)" :title="item.name || '未命名'" class="menu-item">
         <template #title>
           <el-icon size="36">
             <component :is="MenuIcon(item)" />
@@ -26,7 +26,7 @@
   </template>
 </template>
 <script setup lang="ts">
-import { ref, reactive, toRefs, computed } from "vue";
+import { ref, reactive, toRefs, computed,markRaw } from "vue";
 
 import { useRouter, type RouteRecordRaw, useRoute } from "vue-router";
 import {
@@ -42,10 +42,10 @@ const router = useRouter();
 const route = useRoute();
 
 const MenuIcons = reactive<any>({
-  home: House,
-  menu: Menu,
-  user:UserFilled,
-  role:Lock
+  home: markRaw(House),
+  menu: markRaw(Menu),
+  user: markRaw(UserFilled),
+  role: markRaw(Lock),
 });
 
 const props = defineProps({

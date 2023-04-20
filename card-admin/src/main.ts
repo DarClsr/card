@@ -11,10 +11,17 @@ import "./router/modules/permission"
 import "@/styles/taild.css"
 
 
+import {useDirective} from '@/directives/index'
+
+const app=createApp(App)
+
+
+useDirective(app)
 
 
 
-createApp(App)
-.use(router)
+
+
+app.use(router as any)
 .use(store).use(ElementPlus)
 .mount('#app')

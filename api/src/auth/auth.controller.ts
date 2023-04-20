@@ -37,7 +37,7 @@ export class AuthController {
   @Get('info')
   @UseGuards(JwtAuthGuard)
   async getInfo(@Me() user) {
-    return user;
+    return await user.populate("role");
   }
   @Get('menu')
   @UseGuards(JwtAuthGuard)
@@ -49,5 +49,13 @@ export class AuthController {
       dataField: null,
     });
     return menus;
+  }
+
+
+  @Get('permission')
+  @UseGuards(JwtAuthGuard)
+  async loadPermission(@Me() user) {
+    const cur_user=await user.populate("role");
+    return cur_user?.role?.permission;
   }
 }

@@ -103,13 +103,13 @@ const submit = async () => {
   store.commit("setToken", {
     token: data.token,
   })
+
+  
   ElMessage.success("登陆成功");
   let redirectUrl = route.query.redirect||"/";
   if ( typeof redirectUrl !== "string") {
     redirectUrl = "/";
   }
-
-  console.log(redirectUrl,"url")
   router.replace(redirectUrl);
 };
 </script>

@@ -21,6 +21,15 @@ export const asyncRoutes=[
                     type:"menu"
                 },
                 component:()=>import("@/views/menu/index.vue"),
+            },
+            {
+                path:"/permission",
+                name:"模块管理",
+                meta:{
+                    title:"模块管理",
+                    type:"permission"
+                },
+                component:()=>import("@/views/permission/index.vue"),
             }
         ]
     },

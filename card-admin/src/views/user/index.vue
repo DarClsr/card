@@ -1,7 +1,9 @@
 <template>
   <!-- 用户管理 -->
   <div class="top t-flex t-justify-end t-mt-3">
-    <el-button :icon="Plus" type="primary" @click="add">新建</el-button>
+    <el-button :icon="Plus" type="primary" @click="add"
+    v-permission="'user:permission:create'"
+    >新建</el-button>
   </div>
   <div class="table t-mt-3">
     <el-table :data="data" style="width: 100%">

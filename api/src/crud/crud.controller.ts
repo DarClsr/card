@@ -16,37 +16,38 @@ export class CrudController {
   }
 
   @Get('/count')
-  @SetMetadata('Permission', 'crud/read')
+  @SetMetadata('permissions', 'crud/read')
   count(@CrudQuery() query) {
     return this.service.count(query);
   }
 g
   @Get('/options')
-  @SetMetadata('Permission', 'crud/read')
+  @SetMetadata('permissions', 'crud/read')
   async getOptions(@CrudQuery() query) {
     const data=await this.service.getOptions(query);
     return data
   }
 
   @Get('/:id')
-  @SetMetadata('Permission', 'crud/read')
+  @SetMetadata('permissions', 'crud/read')
   detail(@Param('id') id: string,@Query() query) {
     return this.service.findById(id,query);
   }
 
   @Put('/:id')
-  @SetMetadata('Permission', 'crud/edit')
+  @SetMetadata('permissions', 'crud/edit')
   update(@Param('id') id: string, @Body() body) {
     return this.service.update(id, body);
   }
 
   @Post()
-  @SetMetadata('Permission', 'crud/add')
+  @SetMetadata('permissions', 'crud/create')
   create(@Body() body) {
     return this.service.create(body);
   }
 
   @Delete('/:id')
+  @SetMetadata('permissions', 'crud/delete')
   remove(@Param('id') id: string) {
     return this.service.remove(id);
   }

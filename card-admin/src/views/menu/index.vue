@@ -9,7 +9,7 @@
         <el-table-column prop="type" label="类型">
           <template #default="{ row }">
             <el-tag
-              type="blue"
+            type="danger"
               disable-transitions
               v-if="row.type=='group'"
               >{{ MenuName(row) }}</el-tag
@@ -21,7 +21,7 @@
               >{{ MenuName(row) }}</el-tag
             >
             <el-tag
-              type="orange"
+              type="info"
               disable-transitions
               v-if="row.type=='page'"
               >{{ MenuName(row) }}</el-tag

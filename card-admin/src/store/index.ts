@@ -1,12 +1,13 @@
 import { IUserInfo } from '@/api/types/common';
 import { createStore } from 'vuex'
 import { setItem,getItem } from "@/utils/storage"
-import {USER,TOKEN} from "@/utils/constans"
-import { getInfo,getMenu } from '@/api/common';
+import {USER,TOKEN,ROLE,PERMISSION} from "@/utils/constans"
+import { getInfo,getMenu,getPermission } from '@/api/common';
 
 const state={
   user:getItem<IUserInfo>(USER),
   token:getItem<IUserInfo>(TOKEN),
+  permissions: getItem<any>(PERMISSION),
   menus:[]
 }
 
@@ -19,6 +20,9 @@ const store = createStore<State>({
     setUser (state,user) {
       state.user=user;
       setItem(USER,state.user);
+    },
+    setPermission (state,permission) {
+      state.permissions=permission;
     },
     setToken (state,token) {
       state.token=token;
@@ -34,10 +38,14 @@ const store = createStore<State>({
       commit('setUser',data)
       return data;
     },
+    async getPermission({commit}){
+      const {data}=await getPermission();
+      commit('setPermission',data)
+      return data;
+    },
     async loadMenu({commit}){
       const {data}=await getMenu()
       commit('setMenu',data)
-
     }
   }
 })
