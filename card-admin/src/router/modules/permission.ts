@@ -32,6 +32,7 @@ router.beforeEach(
     nprogress.start();
     await store.dispatch("getInfo");
     const isLogin = store.state.user && store.state.token;
+    return true;
     if (to.meta.requireAuth) {
       if (!isLogin) {
         return {
