@@ -64,7 +64,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item prop="parent" label="父级">
-          <el-cascader placeholder="关联上级" v-model="model.parent" :options="options.parents"  />
+          <el-cascader placeholder="关联上级" v-model="model.parent" clearable :options="options.parents"  />
         </el-form-item>
         <el-form-item prop="path" label="路由" v-if="!isGroup">
           <el-input v-model="model.path" />

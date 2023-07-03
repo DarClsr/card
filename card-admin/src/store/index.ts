@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 import { setItem,getItem } from "@/utils/storage"
 import {USER,TOKEN,ROLE,PERMISSION} from "@/utils/constans"
 import { getInfo,getMenu,getPermission } from '@/api/common';
+import { ElMessage } from 'element-plus';
 
 const state={
   user:getItem<IUserInfo>(USER),
@@ -34,14 +35,22 @@ const store = createStore<State>({
   },
   actions:{
     async getInfo({commit}){
-      const {data}=await getInfo();
+      try{
+        const {data}=await getInfo();
       commit('setUser',data)
       return data;
+      }catch(e){
+      commit('setUser',null)
+      }
     },
     async getPermission({commit}){
-      const {data}=await getPermission();
-      commit('setPermission',data)
-      return data;
+      try{
+        const {data}=await getPermission();
+        commit('setPermission',data)
+        return data;
+      }catch(e:any){
+        // ElMessage.error(e.message)
+      }
     },
     async loadMenu({commit}){
       const {data}=await getMenu()

@@ -70,5 +70,50 @@ export const asyncRoutes=[
                 component:()=>import("@/views/role/index.vue"),
             }
         ]
+    },
+    {
+        path:"/open",
+        name:"其他",
+        meta:{
+            title:"其他",
+            requireAuth:true,
+        },
+        component:RouterView,
+        children:[
+            {
+                path:"/open",
+                name:"open ai",
+                meta:{
+                    title:"open ai",
+                },
+                component:()=>import("@/views/openai/index.vue"),
+            },
+            {
+                path:"/open-img",
+                name:"open image",
+                meta:{
+                    title:"open image",
+                },
+                component:()=>import("@/views/openai/image.vue"),
+            }
+        ]
+    },
+    {
+        path:"/template",
+        name:"template",
+        meta:{
+            title:"模板"
+        },
+        component:RouterView,
+        children:[
+            {
+                path:"/template_list",
+                name:"template_list",
+                meta:{
+                    title:"模板列表"
+                },
+                component:()=>import("@/views/template/index.vue"),
+            }
+        ]
     }
 ]

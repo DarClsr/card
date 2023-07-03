@@ -30,6 +30,7 @@ const hasPermission = (path: string, menus: any[]) => {
 router.beforeEach(
   async (to: RouteLocationNormalized, from: RouteLocationNormalized) => {
     nprogress.start();
+    await store.dispatch("getInfo");
     const isLogin = store.state.user && store.state.token;
     if (to.meta.requireAuth) {
       if (!isLogin) {

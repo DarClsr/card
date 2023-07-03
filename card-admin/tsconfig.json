@@ -19,6 +19,6 @@
       ]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/hook/useCutVideo/store/index.js", "src/hook/useCutVideo/viewmodels/index.js", "src/hook/useCutVideo/viewmodels/ReadFrame.js", "src/hook/useCutVideo/viewmodels/TimeLine.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

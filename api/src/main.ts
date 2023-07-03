@@ -15,7 +15,7 @@ async function bootstrap() {
   //允许跨域
   app.enableCors()
   // gzip压缩
-  app.use(compression())
+  app.use(compression()) 
   // For parsing application/json
   app.use(express.json())
   // For parsing application/x-www-form-urlencoded
