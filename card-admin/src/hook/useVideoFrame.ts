@@ -30,6 +30,7 @@ export const useVideoFrame = () => {
   const video_duration=ref(0)
 
   const ffmpeg = createFFmpeg({
+    mainName: 'main',
     log:false,
     progress:(pro:any)=>{
       if(pro.time){
@@ -41,6 +42,7 @@ export const useVideoFrame = () => {
         }
       }
     },
+    corePath: 'https://unpkg.com/@ffmpeg/core-st@0.11.1/dist/ffmpeg-core.js',
   });
 
   const loadFmmpeg =  () => {
