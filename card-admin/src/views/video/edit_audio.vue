@@ -16,7 +16,7 @@
             class="wave-wrap"
             :style="{ left: 0 + 'px', width: progress_left + 'px' }"
           ></div>
-          <canvas class="wave-inner" ref="bg_canvas">
+          <canvas class="wave-inner"  height="105" ref="bg_canvas">
             <!-- <img
               src="https://tradeplus.oss-cn-hangzhou.aliyuncs.com/images/1687843038778-f3012fd29f29c6f0.png"
             /> -->

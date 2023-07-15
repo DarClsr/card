@@ -24,7 +24,8 @@ import editAudio from "./edit_audio.vue";
 
 const bgms = ref([
   {
-    url: "https://tradeplus.oss-cn-hangzhou.aliyuncs.com/files/1677573640000-0111b306664f987e.mp3",
+    url:"https://tradeplus.oss-cn-hangzhou.aliyuncs.com/files/1683862218740-7537b15ead8bf6db.mp3",
+    // url: "https://tradeplus.oss-cn-hangzhou.aliyuncs.com/files/1677573640000-0111b306664f987e.mp3",
     name: "音乐01",
   },
 ]);

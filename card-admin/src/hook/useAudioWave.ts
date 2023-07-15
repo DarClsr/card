@@ -110,52 +110,50 @@ export const useAudioWave =()=>{
         }
     }
     function drawWave (buffer:AudioBuffer,canvas:HTMLCanvasElement) {
-        // buffer.numberOfChannels返回音频的通道数量，1即为单声道，2代表双声道。这里我们只取一条通道的数据
-        let data = [];
-        let originData = buffer.getChannelData(0);
-        // 存储所有的正数据
-        let positives = [];
-        // 存储所有的负数据
-        let negatives = [];
-        // 先每隔100条数据取1条
-        for (let i = 0; i < originData.length; i += 100) {
-          data.push(originData[i]);
+         // buffer.numberOfChannels返回音频的通道数量，1即为单声道，2代表双声道。这里我们只取一条通道的数据
+  let data = [];
+  let originData = buffer.getChannelData(0);
+  // 存储所有的正数据
+  let positives = [];
+  // 存储所有的负数据
+  let negatives = [];
+  // 先每隔100条数据取1条
+  for (let i = 0; i < originData.length; i += 100) {
+    data.push(originData[i]);
+  }
+  // 再从data中每10条取一个最大值一个最小值
+  for (let j = 0, len = Math.floor(data.length / 10); j < len; j++) {
+    let temp = data.slice(j * 10, (j + 1) * 10);
+    positives.push(Math.max.apply(null, temp));
+    negatives.push(Math.min.apply(null, temp));
+  }
+
+  // 创建canvas上下文
+  if (canvas.getContext) {
+    let ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    canvas.width = positives.length;
+    let x = 0;
+    let y = 100;
+    let offset = 0;
+    ctx.fillStyle = "#fa541c";
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    // canvas高度200，横坐标在canvas中点100px的位置，横坐标上方绘制正数据，下方绘制负数据
+    // 先从左往右绘制正数据
+    // x + 0.5是为了解决canvas 1像素线条模糊的问题
+    for (let k = 0; k < positives.length; k++) {
+      ctx.lineTo(x + k + 0.5, y - 100 * positives[k]);
+    }
+
+    // 再从右往左绘制负数据
+        for (let l = negatives.length - 1; l >= 0; l--) {
+        ctx.lineTo(x + l + 0.5, y + 100 * Math.abs(negatives[l]));
         }
-        // 再从data中每10条取一个最大值一个最小值
-        for (let j = 0, len = Math.floor(data.length / 100); j < len; j++) {
-          let temp = data.slice(j * 100, (j + 1) * 100);
-          positives.push(Math.max.apply(null, temp));
-        //   negatives.push(Math.min.apply(null, temp));
-        }
-      
-        // 创建canvas上下文
-        if (canvas.getContext) {
-          let ctx = canvas?.getContext('2d') as CanvasRenderingContext2D ;
-          canvas.width = positives.length;
-          console.log(canvas.height,"height")
-          let x = 0;
-          let y = canvas.height
-          ctx.fillStyle = '#fa541c';
-          ctx.beginPath();
-          ctx.moveTo(x, y);
-          let w=10
-          // canvas高度200，横坐标在canvas中点100px的位置，横坐标上方绘制正数据，下方绘制负数据
-          // 先从左往右绘制正数据
-          // x + 0.5是为了解决canvas 1像素线条模糊的问题
-          for (let k = 0; k < positives.length; k++) {
-            // ctx.lineTo(x + k + 0.5, y - (canvas.height * positives[k]));
-            let h=canvas.height + y - (canvas.height * positives[k])
-            ctx.fillRect(x + ((k-2) *10), y - (canvas.height * positives[k]),w,h);
-          }
-          
-          // 再从右往左绘制负数据
-          for (let l = negatives.length - 1; l >= 0; l--) {
-            ctx.lineTo(x + l + 0.5, y + (canvas.height * Math.abs(negatives[l])));
-          }
-          // 填充图形
-          ctx.fill();
-        }
+    // 填充图形
+       ctx.fill();
       };
+
+    }
 
       return {
         init
