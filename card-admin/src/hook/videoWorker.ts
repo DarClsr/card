@@ -2,7 +2,7 @@ import registerPromiseWorker from "promise-worker/register";
 
 registerPromiseWorker(async (message: any) => {
   const fetchVideourl = async (url: string) => {
-    return await fetch(url).then((res) => res.blob());
+    return await fetch(url).then((res) => res.arrayBuffer());
   };
 
 

@@ -5,11 +5,10 @@
         :interval="0"
         :autoplay="false"
         height="200px"
-        indicator-position="none"
+        indicator-position="one"
       >
         <el-carousel-item v-for="item in bgms" :key="item.url">
-           <editAudio :url="item.url" :name="item.name" />
-          <!-- <AudioItem :url="item.url" /> -->
+          <AudioItem :url="item.url" />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -19,7 +18,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import AudioItem from "./audioItem.vue";
-import editAudio from "./edit_audio.vue";
 
 
 const bgms = ref([
