@@ -145,7 +145,7 @@ export const useAudioWave =()=>{
           for (let k = 0; k < positives.length; k++) {
             // ctx.lineTo(x + k + 0.5, y - (canvas.height * positives[k]));
             let h=canvas.height + y - (canvas.height * positives[k])
-            ctx.fillRect(x + k *10, y - (canvas.height * positives[k]),w,h);
+            ctx.fillRect(x + ((k-2) *10), y - (canvas.height * positives[k]),w,h);
           }
           
           // 再从右往左绘制负数据
