@@ -1,7 +1,6 @@
 <template>
   <div class="page make">
     <div class="container">
-      {{ frame_progress * 100 }}
       <div class="video_play">
         <video
           :src="url"
@@ -11,13 +10,13 @@
             width: config.w * config.scale + 'px',
             height: config.h * config.scale + 'px',
           }"
-          @loadeddata="getVideoDuration"
+          @loadedmetadata="getVideoDuration"
         ></video>
       </div>
 
       <div class="video_frame" ref="videoFrame">
-        <div class="frame_progress">
-         
+        <div class="frame_progress" >
+          <el-progress :percentage="frame_progress" />
         </div>
         <div class="imgs d-flex" v-loading="frame_loading">
           <img
@@ -65,9 +64,9 @@ const {
   frame_List,
   video_duration,
   image_count,
-  getVideoBuffer,
   frame_loading,
   frame_progress,
+  loadVideoUrl
 } = useVideoFrame();
 
 const handle = ref<any>(null);
@@ -80,7 +79,7 @@ const videoFrame = ref<HTMLDivElement>();
 const getVideoDuration = () => {
   if (bgVideo.value) {
     video_duration.value = bgVideo.value.duration;
-    getFrame(url);
+    loadVideoUrl(url);
   }
 };
 

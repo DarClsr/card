@@ -15,6 +15,22 @@ const route:RouteRecordRaw={
                 title:"制作视频"
             },
             component:()=>import("@/views/video/make.vue"),
+        },
+        {
+            path:"/video_frame",
+            name:"video_frame",
+            meta:{
+                title:"视频截帧"
+            },
+            component:()=>import("@/views/video/frame.vue"),
+        },
+        {
+            path:"/dubbing",
+            name:"dubbing",
+            meta:{
+                title:"配音截取"
+            },
+            component:()=>import("@/views/video/dubbing.vue"),
         }
     ]
 };

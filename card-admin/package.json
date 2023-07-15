@@ -21,6 +21,7 @@
     "nprogress": "^0.2.0",
     "performant-array-to-tree": "^1.11.0",
     "phaser": "3.55.2",
+    "promise-worker": "^2.0.1",
     "vue": "^3.2.25",
     "vue-draggable-resizable": "^2.3.0",
     "vue-router": "4",
